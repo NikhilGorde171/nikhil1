@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {box-sizing: border-box}
+body {font-family: "Lato", sans-serif;}
+
+/* Style the tab */
+.tab {
+    float: left;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    width: 18%;
+    height: 600px;
+}
+
+/* Style thebuttons inside the tab */
+.tab button {
+    display: block;
+    background-color: inherit;
+    color: black;
+    padding: 18px 14px;
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 15px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current "tab button" class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    float: left;
+    padding: 0px 12px;
+    border: 1px solid #ccc;
+    width: 82%;
+    border-left: none;
+    height: 600px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+.container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+.col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .col-25, .col-75, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+}
+
+.btncancel1{
+		margin-right:5px;
+
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+	height:70px;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+	text-size:10px;
+    padding: 24px 18px;
+    text-decoration: none;
+
+}
+
+li a:hover {
+    background-color: #111;
+	height:70px;
+}
+
+</style>
+</head>
+<body>
+
+
+<ul>
+  <li ><a class="active" href="http://localhost:8080/HotelOrderManagement/waiter.html">New Order</a></li>
+  <li ><a href="http://localhost:8080/HotelOrderManagement/Kitchen.jsp">View Kitchen</a></li>
+  <li style="float:right;">
+<a>
+<div>
+<form method="post" action="noti">
+<input type="submit" value="Ready From Kitchen..!!" style="margin-top:-0.2cm;" >	
+</form>
+</div>
+  </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'Order Info')" id="defaultOpen">Order Info</button>
+  <button class="tablinks" onclick="openCity(event, 'Starter')">Starter</button>
+  <button class="tablinks" onclick="openCity(event, 'Vegmain')">Vegmain</button>
+  <button class="tablinks" onclick="openCity(event, 'NonVegmain')">NonVegmain</button>
+  <button class="tablinks" onclick="openCity(event, 'Special')">Special</button>
+  <button class="tablinks" onclick="openCity(event, 'Dessert')">Dessert</button>
+  <button class="tablinks" onclick="openCity(event, 'Drinks')">Drinks</button>
+  <button class="tablinks" onclick="openCity(event, 'Chinese')">Chinese</button>
+  <button class="tablinks" onclick="openCity(event, 'Breads')">Breads</button>
+    <form action="placeorder" method="post">
+  		<input type="submit" placeholder="Place Order" name="place" value="Place Order" style="background-color:#4CAF50; width:100%; height:40px; text-size:10px; ">
+	</form>
+	<form action="update" method="post">
+		<input type="submit" placeholder="Update Order" name="place" value="Update Order" style="margin-top:0.1cm; background-color:#4CAF50; width:100%; height:40px; text-size:10px; ">
+	</form>
+</div>
+
+<div id="Order Info" class="tabcontent" class="container">
+	<h2>Genearal Order Information</h2>
+   <form action="Orderinfo" onsubmit="return checkForm(form1);" method="post" name="form1">
+    <div class="row">
+      <div class="col-25">
+        <label for="fname">Customer Name</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="fname" name="customername" >
+      </div>
+    </div>
+   
+    <div class="row">
+      <div class="col-25">
+        <label for="country">Table No.</label>
+      </div>
+      <div class="col-75">
+        <input type="text" placeholder="tableno" name="tableno" value="0" pattern="[1-9]{1}[0-9]{}"> 
+    
+      </div>
+    </div>
+     <div class="row">
+      <div class="col-25">
+        <label for="lname">Mobile No.</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="mobileno" name="mobileno" pattern="[1-9]{1}[0-9]{9}">
+      </div>
+    </div>
+   
+    
+    <div class="row">
+      <input type="submit" value="Submit" style="margin-top:0.3cm;">
+    </div>
+ 
+  </form>
+  
+<div >
+<h2>Update Order Information</h2>
+<form action="Orderinfo" method="post">
+<div class="row">
+<div class="col-25">
+<label for="fname">Table No. </label>
+</div>
+<div class="col-75">
+<input type="text" id="tabno" name="tabno" placeholder="Table No." value="0" pattern="[1-9]{1}[0-9]{}">
+</div>
+</div>
+<input type="submit" value="Update" style="margin-top:0.3cm;">
+</form>
+</div>
+
+
+</div>
+
+
+
+
+<div id="Starter" class="tabcontent">
+  
+  
+  <form action="starter" method="post" class="form-container" >
+    <h2>Starter</h2>
+<table>
+<tr><th>Name</th><th>Quantity</th></tr>
+ <tr>  <td>  Tomato Soup:<br> </td>  <td><input type="text" placeholder="Enter Quantity" id="TS" value="0" name="TS" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Veg Clear Soup:<br> </td>  <td><input type="text" placeholder="Enter Quantity" id="VCS" value="0" name="VCS" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Veg Noodle Soup:<br></td>  <td><input type="text" placeholder="Enter Quantity" id="VNS" value="0" name="VNS" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Sweet Corn Soup:<br></td>  <td><input type="text" placeholder="Enter Quantity"id="SCS" value="0" name="SCS" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Paneer Sixtyfive:<br></td>  <td><input type="text" placeholder="Enter Quantity" id="PS" value="0" name="PS" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Masala Papad:<br></td>  <td><input type="text" placeholder="Enter Quantity" id="MP" value="0" name="MP" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Non Veg Soup:<br></td>  <td><input type="text" placeholder="Enter Quantity" id="NVS" value="0" name="NVS" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Chicken Fry:<br></td>  <td><input type="text" placeholder="Enter Quantity" id="CF" value="0" name="CF" pattern="[1-9]{1}[0-9]{}"></td></tr>
+</table>
+	<input type="submit" class="btncancel" value="Save">
+    
+  </form>
+</div>
+
+<div id="Vegmain" class="tabcontent">
+   
+  <form action="vegmain" method="post" class="form-container" >
+    <h2>Vegmain</h2>
+<table>
+<tr><th>Name</th><th>Quantity</th></tr>
+ <tr>  <td> Paneer Butter Masala<br> </td>  <td><input type="text" placeholder="Enter Quantity" name="a" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Paneer Tikka<br> </td>  <td><input type="text" placeholder="Enter Quantity" name="b" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Paneer Makhanwala<br></td>  <td><input type="text" placeholder="Enter Quantity" name="c" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Paneer Rajwadi<br></td>  <td><input type="text" placeholder="Enter Quantity" name="d" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Mashroom Masala<br></td>  <td><input type="text" placeholder="Enter Quantity" name="e" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Aloo Matar<br></td>  <td><input type="text" placeholder="Enter Quantity" name="f" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Veg Chili Mili<br></td>  <td><input type="text" placeholder="Enter Quantity" name="g" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Kaju Kari<br></td>  <td><input type="text" placeholder="Enter Quantity" name="h" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+</table>
+	<input type="submit" class="btncancel" value="Save">
+    
+  </form>
+</div>
+
+<div id="NonVegmain" class="tabcontent">
+  
+  <form action="nonvegmain" method="post" class="form-container" >
+    <h2>NonVegmain</h2>
+<table>
+<tr><th>Name</th><th>Quantity</th></tr>
+ <tr>  <td>  Chicken Tikka Masala<br> </td>  <td><input type="text" placeholder="Enter Quantity" name="a" value="0" pattern="[1-9]{1}[0-9]{}" ></td></tr>
+<tr>  <td>	 Chiken Keema<br> </td>  <td><input type="text" placeholder="Enter Quantity" name="b" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Chiken Hyderabadi <br></td>  <td><input type="text" placeholder="Enter Quantity" name="c" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Chiken Lasuni<br></td>  <td><input type="text" placeholder="Enter Quantity" name="d" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Chiken Handi<br></td>  <td><input type="text" placeholder="Enter Quantity" name="e" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Anda Curry<br></td>  <td><input type="text" placeholder="Enter Quantity" name="f" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Mutton Masala<br></td>  <td><input type="text" placeholder="Enter Quantity" name="g" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Mutton Bhuna<br></td>  <td><input type="text" placeholder="Enter Quantity" name="h" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+</table>
+	<input type="submit" class="btncancel" value="Save">
+    
+  </form>
+</div>
+
+<div id="Special" class="tabcontent">
+  
+  <form action="special" method="post" class="form-container" >
+    <h2>Special</h2>
+<table>
+<tr><th>Name</th><th>Quantity</th></tr>
+ <tr>  <td>  Punjabi Thali<br> </td>  <td><input type="text" placeholder="Enter Quantity" name="a" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Chiken Thali<br> </td>  <td><input type="text" placeholder="Enter Quantity" name="b" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	Veg Chinese Thali<br></td>  <td><input type="text" placeholder="Enter Quantity" name="c" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Anda Thali<br></td>  <td><input type="text" placeholder="Enter Quantity" name="d" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Nawabi Chicken Thali<br></td>  <td><input type="text" placeholder="Enter Quantity" name="e" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Mutton Thali<br></td>  <td><input type="text" placeholder="Enter Quantity" name="f" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Special Veg Thali<br></td>  <td><input type="text" placeholder="Enter Quantity" name="g" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Zunka Bhakari<br></td>  <td><input type="text" placeholder="Enter Quantity" name="h" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+</table>
+	<input type="submit" class="btncancel" value="Save">
+    
+  </form>
+</div>
+
+<div id="Dessert" class="tabcontent">
+  
+  <form action="dessert" method="post" class="form-container" >
+    <h2>Dessert</h2>
+<table>
+<tr><th>Name</th><th>Quantity</th></tr>
+ <tr>  <td>  Solkadhi<br> </td>  <td><input type="text" placeholder="Enter Quantity" name="a" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Chocolate Milkshake<br> </td>  <td><input type="text" placeholder="Enter Quantity" name="b" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Vanilla Milkshake<br></td>  <td><input type="text" placeholder="Enter Quantity" name="c" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 CAD[Medium]<br></td>  <td><input type="text" placeholder="Enter Quantity" name="d" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	Cold Coffee<br></td>  <td><input type="text" placeholder="Enter Quantity" name="e" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Sweet Plate<br></td>  <td><input type="text" placeholder="Enter Quantity" name="f" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Ice-Cream<br></td>  <td><input type="text" placeholder="Enter Quantity" name="g" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td> Limbu-Sarbat<br></td>  <td><input type="text" placeholder="Enter Quantity" name="h" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+</table>
+	<input type="submit" class="btncancel" value="Save">
+    
+  </form>
+</div>
+
+
+<div id="Drinks" class="tabcontent">
+  
+  <form action="drinks" method="post" class="form-container" >
+    <h2>Drinks</h2>
+<table>
+<tr><th>Name</th><th>Quantity</th></tr>
+ <tr>  <td>  Coke<br> </td>  <td><input type="text" placeholder="Enter Quantity" name="a" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Sprite<br> </td>  <td><input type="text" placeholder="Enter Quantity" name="b" value="0" pattern="[1-9]{1}[0-9]{}" ></td></tr>
+<tr>  <td>	 Mango-Maza<br></td>  <td><input type="text" placeholder="Enter Quantity" name="c" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	Mirinda<br></td>  <td><input type="text" placeholder="Enter Quantity" name="d" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	Seven-up<br></td>  <td><input type="text" placeholder="Enter Quantity" name="e" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Thumbs-up<br></td>  <td><input type="text" placeholder="Enter Quantity" name="f" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Punjabi Lassi<br></td>  <td><input type="text" placeholder="Enter Quantity" name="g" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Mineral Water<br></td>  <td><input type="text" placeholder="Enter Quantity" name="h" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+</table>
+	<input type="submit" class="btncancel" value="Save">
+    
+  </form>
+</div>
+
+
+<div id="Chinese" class="tabcontent">
+  
+  <form action="chinese" method="post" class="form-container" >
+    <h2>Chinese</h2>
+<table>
+<tr><th>Name</th><th>Quantity</th></tr>
+ <tr>  <td> Veg Fried Rice<br> </td>  <td><input type="text" placeholder="Enter Quantity" name="a" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Tomato Fried Rice<br> </td>  <td><input type="text" placeholder="Enter Quantity" name="b" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Paneer Fried Rice<br></td>  <td><input type="text" placeholder="Enter Quantity" name="c" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Chicken Tripple Rice <br></td>  <td><input type="text" placeholder="Enter Quantity" name="d" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Veg Hakka Noodles<br></td>  <td><input type="text" placeholder="Enter Quantity" name="e" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Veg Schezwan Noodles<br></td>  <td><input type="text" placeholder="Enter Quantity" name="f" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Chicken Hakka Noodles<br></td>  <td><input type="text" placeholder="Enter Quantity" name="g" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Chicken Tripple Noodles<br></td>  <td><input type="text" placeholder="Enter Quantity" name="h" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+</table>
+	<input type="submit" class="btncancel" value="Save">
+    
+  </form>
+</div>
+
+
+
+<div id="Breads" class="tabcontent">
+  
+  <form action="breads" method="post" class="form-container" >
+    <h2>Breads</h2>
+<table>
+<tr><th>Name</th><th>Quantity</th></tr>
+ <tr>  <td>  Plain Roti<br> </td>  <td><input type="text" placeholder="Enter Quantity" name="a" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Butter Roti<br> </td>  <td><input type="text" placeholder="Enter Quantity" name="b"value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Plain Naan<br></td>  <td><input type="text" placeholder="Enter Quantity" name="c" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Butter Naan<br></td>  <td><input type="text" placeholder="Enter Quantity" name="d" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Bajra Bhakri<br></td>  <td><input type="text" placeholder="Enter Quantity" name="e" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Plain Paratha<br></td>  <td><input type="text" placeholder="Enter Quantity" name="f" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Chapati<br></td>  <td><input type="text" placeholder="Enter Quantity" name="g" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+<tr>  <td>	 Jwari Bhakri<br></td>  <td><input type="text" placeholder="Enter Quantity" name="h" value="0" pattern="[1-9]{1}[0-9]{}"></td></tr>
+</table>
+	<input type="submit" class="btncancel" value="Save">
+    
+  </form>
+</div>
+
+<script type="text/javascript">
+function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+
+function checkForm(form1)
+{
+  // validation fails if the input is blank
+  if(form1.customername.value == "" || form1.orderid.value == "" || form1.tableno.value == "" || form1.mobileno.value == "") {
+    alert("Error: Input is empty!");
+    form1.customername.focus();
+    form1.orderid.focus();
+    form1.tableno.focus();
+    form1.mobileno.focus();
+    return false;
+  }
+  // regular expression to match only alphanumeric characters and spaces
+  var re = /^[\w ]+$/;
+  var re1= /[0-9]/;
+  var re2=/(7|8|9)\d{9}$/;
+  // validation fails if the input doesn't match our regular expression
+  if(!re.test(form1.customername.value)) {
+    alert("Error: Input contains invalid characters!");
+    form1.customername.focus();
+    return false;
+  }
+  if(!re1.test(form1.orderid.value)) {
+	    alert("Error: orderid contains invalid characters!");
+	    form1.orderid.focus();
+	    return false;
+	  }
+  if(!re1.test(form1.tableno.value)) {
+	    alert("Error: table number contains invalid characters!");
+	    form1.tableno.focus();
+	    return false;
+	  }
+  if(!re2.test(form1.mobileno.value)) {
+	    alert("Error: Mobile number contains invalid characters!");
+	    form1.mobileno.focus();
+	    return false;
+	  }
+
+  // validation was successful
+  return true;
+}
+
+</script>
+     
+</body>
+</html> 
